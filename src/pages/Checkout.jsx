@@ -18,7 +18,6 @@ function Checkout() {
 
   const [loading, setLoading] = useState(false);
 
-  // 1. Calculate Total and format for eSewa Signature
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.qty,
     0,
@@ -41,7 +40,6 @@ function Checkout() {
         },
       };
 
-      // 2. Prepare Order Data
       const orderData = {
         orderItems: cart.map((item) => ({
           title: item.title,
@@ -57,18 +55,15 @@ function Checkout() {
         totalPrice: totalPrice,
       };
 
-      // 3. Save Order to Database first
       await axios.post(
         `${import.meta.env.VITE_API_URL}/orders`,
         orderData,
         config,
       );
 
-      // 4. Initiate eSewa Payment
       const transaction_uuid = `GenBook-${Date.now()}`;
       const product_code = "EPAYTEST";
 
-      // Get Signature from Backend
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/payments/initiate-esewa`,
         {
@@ -79,7 +74,6 @@ function Checkout() {
         config,
       );
 
-      // 5. Create and Submit eSewa Form
       const form = document.createElement("form");
       form.setAttribute("method", "POST");
       form.setAttribute(
@@ -111,7 +105,6 @@ function Checkout() {
 
       document.body.appendChild(form);
 
-      // Optional: Clear cart before redirecting
       clearCart();
 
       form.submit();

@@ -9,7 +9,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { login } = useAuth(); // We'll log them in automatically after they register!
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -17,17 +17,14 @@ function Register() {
     setError("");
 
     try {
-      // 1. Send the new user data to your backend
       await axios.post(`${import.meta.env.VITE_API_URL}/users/register`, {
         name,
         email,
         password,
       });
 
-      // 2. If successful, automatically log them in!
       await login(email, password);
 
-      // 3. Send them to the homepage
       navigate("/");
     } catch (error) {
       console.error("Registration failed", error);

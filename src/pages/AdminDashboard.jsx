@@ -6,7 +6,7 @@ function AdminDashboard() {
   const { token } = useAuth();
   const [books, setBooks] = useState([]);
   const [message, setMessage] = useState("");
-  const [imageFile, setImageFile] = useState(null); // Added state for the file object
+  const [imageFile, setImageFile] = useState(null);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -36,7 +36,6 @@ function AdminDashboard() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle file selection
   const handleFileChange = (e) => {
     setImageFile(e.target.files[0]);
   };
@@ -44,7 +43,6 @@ function AdminDashboard() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Set config for multipart/form-data to support file uploads
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -52,7 +50,6 @@ function AdminDashboard() {
       },
     };
 
-    // Create FormData object to package the file and text fields together
     const data = new FormData();
     data.append("title", formData.title);
     data.append("author", formData.author);
@@ -62,21 +59,21 @@ function AdminDashboard() {
     data.append("stock", formData.stock);
 
     if (imageFile) {
-      data.append("image", imageFile); // 'image' must match the backend upload.single('image') key
+      data.append("image", imageFile);
     }
 
     try {
       if (isEditing) {
         await axios.put(
           `${import.meta.env.VITE_API_URL}/books/${editId}`,
-          data, // Sending FormData instead of JSON
+          data,
           config,
         );
         setMessage("✅ Book updated successfully!");
       } else {
         await axios.post(
           `${import.meta.env.VITE_API_URL}/books`,
-          data, // Sending FormData instead of JSON
+          data,
           config,
         );
         setMessage("✅ Book added successfully!");
@@ -128,10 +125,9 @@ function AdminDashboard() {
       category: "",
       stock: "",
     });
-    setImageFile(null); // Clear the selected file
+    setImageFile(null);
     setIsEditing(false);
     setEditId(null);
-    // Clear file input manually
     const fileInput = document.getElementById("bookImage");
     if (fileInput) fileInput.value = "";
   };
@@ -244,7 +240,6 @@ function AdminDashboard() {
                   />
                 </div>
 
-                {/* --- NEW: Image Upload Input --- */}
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-gray-400 uppercase ml-1">
                     Cover Image
@@ -300,7 +295,6 @@ function AdminDashboard() {
                         className="hover:bg-blue-50/30 transition-colors group"
                       >
                         <td className="p-6 flex items-center gap-4">
-                          {/* Display the uploaded cover image in the table */}
                           <img
                             src={
                               book.image ||

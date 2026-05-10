@@ -8,7 +8,6 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const { token, user } = useAuth();
 
-  // 1. Fetch Cart from Database on load
   useEffect(() => {
     const fetchCart = async () => {
       if (token && user) {
@@ -34,7 +33,6 @@ export const CartProvider = ({ children }) => {
     fetchCart();
   }, [token, user]);
 
-  // 2. Add or Update Quantity (Plus/Minus)
   const addToCart = async (book, newQty = 1) => {
     setCart((prev) => {
       const exist = prev.find((x) => x._id === book._id);
@@ -55,7 +53,7 @@ export const CartProvider = ({ children }) => {
             bookId: book._id,
             title: book.title,
             price: book.price,
-            quantity: newQty, // Sends 1 to add, -1 to subtract
+            quantity: newQty,
           },
           config,
         );
@@ -65,15 +63,12 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // 3. Remove Item Completely
   const removeFromCart = async (bookId) => {
     setCart((prev) => prev.filter((x) => x._id !== bookId));
 
     if (token) {
       try {
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        // We use our existing add route but send a negative quantity of the total
-        // Or you can create a specific DELETE /api/cart/:id route on backend
         const itemToRemove = cart.find((x) => x._id === bookId);
         await axios.post(
           `${import.meta.env.VITE_API_URL}/cart`,

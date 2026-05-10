@@ -7,18 +7,17 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { login } = useAuth(); // Grab the login function from our bucket
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
-    // Attempt to log in
     const success = await login(email, password);
 
     if (success) {
-      navigate("/"); // Send them to the homepage if it works
+      navigate("/");
     } else {
       setError("Invalid email or password. Please try again.");
     }

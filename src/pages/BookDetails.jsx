@@ -68,7 +68,6 @@ function BookDetails() {
   return (
     <div className="min-h-screen bg-gray-50 pb-20 font-sans">
       <div className="max-w-6xl mx-auto p-4 md:p-8">
-        {/* Breadcrumb Navigation */}
         <nav className="flex items-center gap-2 mb-8 text-xs font-black uppercase tracking-widest">
           <Link
             to="/"
@@ -85,7 +84,6 @@ function BookDetails() {
         {/* MAIN PRODUCT SECTION */}
         <div className="bg-white rounded-[2rem] shadow-2xl shadow-blue-900/5 overflow-hidden border border-gray-100 mb-12">
           <div className="flex flex-col lg:flex-row">
-            {/* Left: Book Cover Image */}
             <div className="lg:w-2/5 bg-gray-100 relative group">
               <img
                 src={
@@ -170,7 +168,6 @@ function BookDetails() {
 
         {/* REVIEWS SECTION */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* List of Reviews */}
           <div className="space-y-8">
             <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tighter flex items-center gap-3">
               Reader Thoughts

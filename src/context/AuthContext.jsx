@@ -7,11 +7,9 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || null);
 
-  // Whenever the token changes, update localStorage and Axios headers
   useEffect(() => {
     if (token) {
       localStorage.setItem("token", token);
-      // Automatically attach the token to future backend requests!
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     } else {
       localStorage.removeItem("token");
@@ -27,8 +25,6 @@ export const AuthProvider = ({ children }) => {
         { email, password },
       );
       setToken(response.data.token);
-
-      // FIX: Just save response.data directly!
       setUser(response.data);
 
       return true;

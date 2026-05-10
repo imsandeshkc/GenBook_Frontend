@@ -59,14 +59,12 @@ function Cart() {
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-            {/* List of Cart Items */}
             <div className="lg:col-span-2 space-y-6">
               {cart.map((item) => (
                 <div
                   key={item._id}
                   className="group bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100 flex flex-col md:flex-row items-center gap-6 transition-all hover:shadow-xl hover:border-blue-100"
                 >
-                  {/* Book Image from Cloudinary */}
                   <div className="w-24 h-32 flex-shrink-0 bg-gray-50 rounded-xl overflow-hidden shadow-md">
                     <img
                       src={
@@ -94,7 +92,6 @@ function Cart() {
                   </div>
 
                   <div className="flex items-center gap-6 bg-gray-50 p-2 rounded-2xl border border-gray-100">
-                    {/* Quantity Controls */}
                     <div className="flex items-center gap-1">
                       <button
                         onClick={() =>
@@ -157,7 +154,7 @@ function Cart() {
             {/* Order Summary Sidebar */}
             <div className="lg:col-span-1 sticky top-8">
               <div className="bg-blue-900 p-8 rounded-[2rem] shadow-2xl shadow-blue-900/20 text-white relative overflow-hidden">
-                {/* Decorative glow */}
+
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-400 rounded-full blur-3xl opacity-20"></div>
 
                 <h2 className="text-2xl font-black mb-8 uppercase tracking-tighter border-b border-blue-800 pb-4">

@@ -46,7 +46,6 @@ function Home() {
     <div className="min-h-screen bg-gray-50 font-sans pb-20">
       {/* HERO SEARCH SECTION */}
       <div className="bg-blue-900 py-20 px-4 text-center text-white shadow-inner relative overflow-hidden">
-        {/* Decorative background element */}
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
           <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-indigo-500 rounded-full blur-3xl"></div>
@@ -98,7 +97,6 @@ function Home() {
       </div>
 
       <div className="p-8 max-w-7xl mx-auto">
-        {/* DYNAMIC HEADER */}
         <div className="flex justify-between items-end mb-12">
           <div>
             <h2 className="text-3xl font-black text-gray-900 uppercase tracking-tighter">
@@ -130,7 +128,6 @@ function Home() {
                 key={book._id}
                 className="group bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col hover:-translate-y-2"
               >
-                {/* --- IMAGE SECTION --- */}
                 <div className="relative aspect-[3/4] overflow-hidden bg-gray-200">
                   <img
                     src={

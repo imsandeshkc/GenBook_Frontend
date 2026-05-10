@@ -7,7 +7,7 @@ function Navbar() {
   const { cart } = useCart();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false); // State for mobile menu
+  const [isOpen, setIsOpen] = useState(false);
 
   const totalItems = cart.reduce((total, item) => total + item.qty, 0);
 
